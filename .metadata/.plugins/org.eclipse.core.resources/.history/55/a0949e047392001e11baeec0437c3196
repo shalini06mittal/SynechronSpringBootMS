@@ -1,0 +1,16 @@
+package com.app.mvc;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class HelloController {
+
+	public HelloController() {
+		System.out.println("Hello controller consrtuctor");
+	}
+	
+	public String hello()
+	{
+		return "greet";// viewname
+	}
+}

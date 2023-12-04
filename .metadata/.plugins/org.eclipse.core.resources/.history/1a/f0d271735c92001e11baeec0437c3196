@@ -1,0 +1,10 @@
+package com.spring.SpringCoreDemo.payment;
+
+public class neftCard implements Payment{
+
+	@Override
+	public void pay() {
+		// TODO Auto-generated method stub
+		System.out.println("paying by credit card");
+	}
+}
