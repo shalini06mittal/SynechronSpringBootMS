@@ -17,10 +17,13 @@
 	<a href="logout">Logout</a>
 </div>
 <h1>Profile Page</h1>
-<p>Welcome ${sessionScope.email}</p>
+<p>Welcome ${email}</p>
 <div>
 	<h1>Profile Details</h1>
-	<div>Firstname : </div>
+	<div>Firstname : ${customer.firstname}</div>
+	<div>Last name : ${customer.lastname}</div>
+	<div>email : ${customer.email}</div>
+	<div>City : ${customer.city}</div>
 </div>
 </body>
 </html>

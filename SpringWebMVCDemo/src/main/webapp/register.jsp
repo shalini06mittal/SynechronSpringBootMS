@@ -8,6 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.error{
+	color:red;
+	}
+</style>
 </head>
 <body>
 
@@ -21,6 +26,9 @@
 	<a href="register">register</a>
 </div>
 	<h1>Please REGISTER</h1>
+	<c:if test="${error != null}">
+		<p class='error'>${error }</p>
+	</c:if>
 	<form action="register" method="POST">
 		<div>
 			Email : <input type='text' name="email" />

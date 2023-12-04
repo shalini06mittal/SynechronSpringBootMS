@@ -31,15 +31,18 @@ public class CustomerService {
 	public boolean insertCustomer(Customer customer) {
 		for(int i=0;i<customers.size();i++)
 			if(customers.get(i).getEmail().equals(customer.getEmail()))
-				throw new RuntimeException("customer with" +customer.getEmail()+" already exist");
+				throw new RuntimeException("customer with " +customer.getEmail()+" already exist");
 		customers.add(customer);
 		return true;
 	}
 	public boolean validateUser(String email, String password) {
 		for(Customer customer : customers) {
-			if(customer.getEmail().equals(email) && customer.getPassword().equals(password))
-				return true;
+			if(customer.getEmail().equals(email))
+				if(customer.getPassword().equals(password))
+					return true;
+				else
+					throw new RuntimeException("Invalid credentials");
 		}
-		return false;
+		throw new RuntimeException("Customer not registered");
 	}
 }
