@@ -15,6 +15,15 @@
 </style>
 </head>
 <body>
+<div>
+	<a href="index">Home</a>
+</div>
+<div>
+	<a href="login">Login</a>
+</div>
+<div>
+	<a href="register">register</a>
+</div>
 	<h1>Please Login</h1>
 	<c:if test="${error != null}">
 		<p class='error'>${error }</p>
