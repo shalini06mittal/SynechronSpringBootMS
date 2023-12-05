@@ -1,0 +1,32 @@
+package com.spring.SpringCoreDemo.payment;
+
+public class Invoice {
+	/*
+	 * Invoice has a dependency on the object of type Notification?
+	 */
+	Notification notification;
+	public Invoice() {
+		//notification = new Email();
+	}
+	
+	public Invoice(Notification notification) {
+		super();
+		this.notification = notification;
+	}
+
+	
+	public Notification getNotification() {
+		return notification;
+	}
+
+	public void setNotification(Notification notification) {
+		this.notification = notification;
+	}
+
+	public void processOrder() {
+		System.out.println("processing order");
+		notification.sendNotification();
+	}
+	
+
+}

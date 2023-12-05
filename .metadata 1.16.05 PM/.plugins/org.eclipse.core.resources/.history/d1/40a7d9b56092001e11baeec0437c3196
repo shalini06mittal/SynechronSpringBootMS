@@ -1,0 +1,20 @@
+package com.spring.SpringCoreDemo;
+
+import com.spring.SpringCoreDemo.payment.Email;
+import com.spring.SpringCoreDemo.payment.Invoice;
+import com.spring.SpringCoreDemo.payment.Notification;
+import com.spring.SpringCoreDemo.payment.SMS;
+import com.spring.SpringCoreDemo.payment.WhatsApp;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        Invoice invoice =null;// = spring give me + inject Notification
+        invoice.processOrder();
+    }
+}

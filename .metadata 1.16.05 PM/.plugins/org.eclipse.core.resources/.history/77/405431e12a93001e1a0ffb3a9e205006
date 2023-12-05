@@ -1,0 +1,5 @@
+package com.boot.SpringBootDemo.repo;
+
+public interface EmployeeRepo {
+
+}

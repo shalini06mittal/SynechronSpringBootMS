@@ -1,0 +1,33 @@
+package com.boot.SpringBootDemo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.boot.SpringBootDemo.entity.Employee;
+import com.boot.SpringBootDemo.repo.EmployeeRepo;
+
+import jakarta.persistence.EntityExistsException;
+
+@Service
+public class EmployeeService {
+	
+	@Autowired
+	private EmployeeRepo employeeRepo;
+	
+	public long getCount()
+	{
+		return this.employeeRepo.count();
+	}
+	
+	public Employee insertEmployee(Employee employee) {
+		if(this.employeeRepo.existsById(employee.getEid()))
+			throw new EntityExistsException("Cannot insert as id already exists");
+		return this.employeeRepo.save(employee);
+	}
+	
+	public List<Employee> getAllEmployees(){
+		return this.employeeRepo.findAll();
+	}
+}

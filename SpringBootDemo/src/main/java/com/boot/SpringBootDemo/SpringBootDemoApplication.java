@@ -138,14 +138,12 @@ public class SpringBootDemoApplication {
 		
 		Citizen c = citizenRepo.findById(1).get();
 		//System.out.println(c.getCid()+" "+c.getName()+" "+c.getAddhar().getAadharid()+" "+c.getAddhar().getAddress());
-		System.out.println(c);
+		//System.out.println(c);
 		
 //		Aadhar a = repo.findById(1).get();
 //		System.out.println(a.getAadharid()+" "+a.getAddress()+" "+a.getCitizen().getName());
 		
 	}
-	
-	
 	
 	//@Bean
 	//@PostConstruct

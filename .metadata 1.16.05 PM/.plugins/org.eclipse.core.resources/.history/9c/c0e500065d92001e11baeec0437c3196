@@ -1,0 +1,14 @@
+package com.spring.SpringCoreDemo.payment;
+
+public class Invoice {
+	
+	Notification notification;
+	
+	
+	public void processOrder() {
+		System.out.println("processing order");
+		notification.sendNotification();
+	}
+	
+
+}

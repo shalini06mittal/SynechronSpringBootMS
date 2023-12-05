@@ -1,0 +1,8 @@
+package com.spring.SpringCoreDemo.payment;
+
+public class Invoice {
+	
+	Notification notification;
+	
+
+}

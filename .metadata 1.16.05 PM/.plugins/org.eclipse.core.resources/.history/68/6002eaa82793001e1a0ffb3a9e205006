@@ -1,0 +1,27 @@
+package com.boot.SpringBootDemo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.boot.SpringBootDemo.db.EmployeeDB;
+import com.boot.SpringBootDemo.entity.Employee;
+
+@SpringBootApplication
+public class SpringBootDemoApplication {
+//04edcda8-8a84-4f2b-9fa3-2eb0959af19e 
+	public static void main(String[] args) {
+		
+		ConfigurableApplicationContext context =
+		SpringApplication.run(SpringBootDemoApplication.class, args);
+		EmployeeDB db = context.getBean(EmployeeDB.class);
+		System.out.println(db.getEmpCount());
+		try {
+			System.out.println(db.insertEmployee(new Employee(1, "Shalini", "Mumbai")));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

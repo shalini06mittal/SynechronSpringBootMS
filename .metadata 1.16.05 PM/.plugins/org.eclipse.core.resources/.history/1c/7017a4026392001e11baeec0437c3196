@@ -1,0 +1,39 @@
+package com.spring.SpringCoreDemo.payment;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Invoice {
+	/*
+	 * Invoice has a dependency on the object of type Notification?
+	 * 1. constructor injection
+	 * 2. setter injection
+	 * 3. field
+	 */
+	Notification notification;
+	public Invoice() {
+		System.out.println("Invoice default constructor");
+	}
+	
+	public Invoice(Notification notification) {
+		super();
+		System.out.println("Invoice parameterized constructor");
+		this.notification = notification;
+	}
+
+	public Notification getNotification() {
+		return notification;
+	}
+
+	public void setNotification(Notification notification) {
+		System.out.println("Invoice setter constructor");
+		this.notification = notification;
+	}
+
+	public void processOrder() {
+		System.out.println("processing order");
+		notification.sendNotification();
+	}
+	
+
+}

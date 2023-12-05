@@ -1,0 +1,5 @@
+package com.boot.SpringBootDemo.entity;
+
+public class Aadhar {
+
+}

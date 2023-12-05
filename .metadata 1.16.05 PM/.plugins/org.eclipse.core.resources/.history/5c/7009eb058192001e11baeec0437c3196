@@ -1,0 +1,31 @@
+package com.app.db;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import com.app.model.Customer;
+
+public class CustomerDB {
+
+	private List<Customer> customers = new ArrayList<>();
+	
+	public List<Customer> getAllCustomers()
+	{
+		return customers;
+	}
+	public Customer getCustomerById(String email) {
+		for(Customer customer : customers) {
+			if(customer.getEmail().equals(email))
+				return customer;
+		}
+		throw new RuntimeException("customer with" +email+" does not exist");
+	}
+	public boolean insertCustomer(Customer customer) {
+		for(int i=0;i<customers.size();i++)
+			if(customers.get(i).getEmail().equals(customer.getEmail()))
+				throw new RuntimeException("customer with" +customer.getEmail()+" already exist");
+		customers.add(customer);
+		return true;
+	}
+}

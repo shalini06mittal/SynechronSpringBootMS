@@ -1,0 +1,23 @@
+package com.boot.SpringBootDemo.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Aadhar {
+
+	@Id
+	private int aadharid;
+	private String address;
+	private String pic;
+	
+	public Aadhar() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Aadhar( String address, String pic) {
+		this.address = address;
+		this.pic = pic;
+	}
+	
+}
