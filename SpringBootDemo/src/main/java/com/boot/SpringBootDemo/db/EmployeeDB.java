@@ -24,13 +24,13 @@ public class EmployeeDB {
 	
 	public Employee insertEmployee(Employee emp) throws Exception
 	{
-		String sql = "insert into emp values(?,?,?,?,?,?,?)";
-		try {
-			this.template.update(sql, emp.getEid(), emp.getEname(), emp.getCity() );
-		}
-		catch(Exception e) {
-			throw new Exception(e.getMessage());
-		}
+//		String sql = "insert into emp values(?,?,?)";
+//		try {
+//			this.template.update(sql, emp.getEid(), emp.getEname(), emp.getCity() );
+//		}
+//		catch(Exception e) {
+//			throw new Exception(e.getMessage());
+//		}
 		return emp;
 	}
 
@@ -59,7 +59,7 @@ public class EmployeeDB {
 		public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Employee emp = new Employee();
 			emp.setEid(rs.getInt(1));
-			emp.setEname(rs.getString(2));
+			//emp.setEname(rs.getString(2));
 			emp.setCity(rs.getString(3));
 			
 			return emp;

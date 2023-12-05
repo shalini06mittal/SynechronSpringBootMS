@@ -1,10 +1,23 @@
 package com.boot.SpringBootDemo.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity // database managed entity => employee
+@Table(name="emp")
 public class Employee {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int eid;
+	@Column(name="ename", nullable = false, length = 150)
 	private String ename;
 	private String city;
+	
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
