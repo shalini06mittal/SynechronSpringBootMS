@@ -14,5 +14,7 @@ public interface ProductRepo extends JpaRepository<Product, Integer>{
 	public List<Product> findByPriceGreaterThan(double amount);
 	public List<Product> findByCategoryCategoryid(int id);
 	
+	// including break , resume at 4 pm.
+	// select all prod names startwith with '' and belong to a categoryid
 }
 

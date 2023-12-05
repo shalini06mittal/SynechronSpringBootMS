@@ -1,6 +1,0 @@
-package com.spring.SpringCoreDemo.payment;
-
-public interface Notofication {
-
-	public void pay();
-}
