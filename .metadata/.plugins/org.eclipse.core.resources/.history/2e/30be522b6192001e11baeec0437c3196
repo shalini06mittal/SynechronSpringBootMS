@@ -1,8 +1,0 @@
-package com.spring.SpringCoreDemo;
-
-public class Dummy {
-
-	public Dummy() {
-		System.out.println("Dummy constructor");
-	}
-}

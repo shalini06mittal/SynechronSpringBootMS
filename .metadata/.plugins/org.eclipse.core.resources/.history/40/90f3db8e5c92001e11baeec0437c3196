@@ -1,6 +1,0 @@
-package com.spring.SpringCoreDemo.payment;
-
-public interface Payment {
-
-	public void pay();
-}

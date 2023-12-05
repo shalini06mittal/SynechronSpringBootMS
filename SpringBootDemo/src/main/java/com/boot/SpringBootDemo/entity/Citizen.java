@@ -17,6 +17,7 @@ public class Citizen {
 	private String country;
 	@OneToOne
 	@JoinColumn(name="aadharid")
+	
 	private Aadhar addhar;
 	
 	public Citizen() {
