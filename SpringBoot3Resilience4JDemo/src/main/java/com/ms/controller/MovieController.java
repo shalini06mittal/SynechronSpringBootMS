@@ -17,7 +17,7 @@ import com.ms.service.MovieService;
 @RequestMapping("/movies")
 public class MovieController {
 
-	private final Logger logger = LoggerFactory.getLogger(MovieController.class);
+	private final Logger log = LoggerFactory.getLogger(MovieController.class);
 	
 	
 	@Autowired
@@ -27,16 +27,57 @@ public class MovieController {
 	public ResponseEntity<?> getMovieById(@PathVariable String id, 
 			@RequestParam(required = false, defaultValue = "simpleRetry") String retryType)
 	{
+		System.out.println(retryType);
 		Movie movie = null;
 		switch(retryType) {
 		case "simpleRetry":
-			logger.info("Simple retry example");
-			movie = movieService.getMovieDetails(id);
+			log.info("Simple retry example");
+			movie = movieService.getMovieDetailsWithFallback(id); //getMovieDetails(id);
 			return ResponseEntity.ok(movie);
 		case "retryOnException":
-			logger.info("Retry on exception example");
+			log.info("Retry on exception example");
 			movie = movieService.getMovieDetailsOnRetryForException(id);
 			return ResponseEntity.ok(movie);
+		case "retry-on-exception-predicate": {
+            log.info("Retry on exception predicate example");
+             movie = movieService.getMovieDetailsRetryOnExceptionPredicate(id);
+            return ResponseEntity.ok(movie);
+        }
+        case "retry-on-conditional-predicate": {
+            log.info("Retry on conditional predicate example");
+             movie = movieService.getMovieDetailsRetryOnConditionalPredicate(id);
+            return ResponseEntity.ok(movie);
+        }
+        case "retry-using-exponential-backoff": {
+            log.info("Retry using exponential backoff example");
+             movie = movieService.getMovieDetailsRetryUsingExponentialBackoff(id);
+            return ResponseEntity.ok(movie);
+        }
+        case "retry-using-randomized-wait": {
+        	// 2000 - 2000 * 0.7 and  2000 + 2000 * 0.7 
+            log.info("Retry using randomized wait example");
+             movie = movieService.getMovieDetailsRetryUsingRandomizedWait(id);
+            return ResponseEntity.ok(movie);
+        }
+        case "retry-with-fallback": {
+            log.info("Retry with fallback example");
+             movie = movieService.getMovieDetailsWithFallback(id);
+            return ResponseEntity.ok(movie);
+        }
+        case "retry-with-custom-config": {
+            log.info("Retry with custom config example");
+             movie = movieService.getMovieDetailsWithCustomRetryConfig(id);
+            return ResponseEntity.ok(movie);
+        }
+        case "retry-with-event-details": {
+            log.info("Retry with event details example");
+             movie = movieService.getMovieDetailsWithRetryEventDetails(id);
+            return ResponseEntity.ok(movie);
+        }
+        case "custom":
+        	log.info("Retry with custom example");
+            movie = movieService.getMovieDetailsUsingCustomRetry(id);
+           return ResponseEntity.ok(movie);
 		}
 		return ResponseEntity.ok("Error");
 		
