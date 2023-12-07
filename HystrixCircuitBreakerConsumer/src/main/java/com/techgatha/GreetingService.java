@@ -15,7 +15,7 @@ public class GreetingService {
     @HystrixCommand(fallbackMethod = "defaultGreeting")
     public String getGreeting(String username) {
         return template
-          .getForObject("http://REST-PRODUCER/greeting/{username}", 
+          .getForObject("http://HYSTRIX-PRODUCER/greeting/{username}", 
           String.class, username);
     }
  

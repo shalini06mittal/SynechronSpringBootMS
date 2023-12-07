@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreetingController {
  
-//    @Autowired
-//    private GreetingService greetingService;
-// 
-//    @GetMapping("/get-greeting/{username}")
-//    public String getGreeting(Model model, @PathVariable("username") String username) {
-//        return greetingService.getGreeting(username);
-//        
-//    }
+    @Autowired
+    private GreetingService greetingService1;
+ 
+    @GetMapping("/get-greeting1/{username}")
+    public String getGreeting1( @PathVariable("username") String username) {
+        return greetingService1.getGreeting(username);
+        
+    }
 	
     @Autowired
     private GreetingClient greetingService;
