@@ -1,0 +1,7 @@
+
+resilience4j.retry:
+    instances:
+      simpleRetry:
+        maxAttempts: 3
+        waitDuration: 2s
+      
