@@ -10,6 +10,7 @@ import com.ms.client.MovieApiClient;
 import com.ms.entity.Movie;
 import com.ms.exception.MovieNotFoundException;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.Retry.EventPublisher;
 import io.github.resilience4j.retry.RetryRegistry;
 import io.github.resilience4j.retry.annotation.Retry;
@@ -28,8 +29,13 @@ public class MovieService {
 	private RetryRegistry retryRegistry;
 
 	@Retry(name="simpleRetry")
+	@CircuitBreaker(name="greetingClientCB", fallbackMethod = "serviceFallbackMethod")
 	public Movie getMovieDetails(String movieId) {
 		return fetchMovieDetails(movieId);
+	}
+	private Movie serviceFallbackMethod(String movieId, Throwable e) {
+		log.info("Fallback method called "+e.getMessage());
+		return new Movie("CB", "N/A", "N/A", 0.0);
 	}
 
 	@Retry(name = "retryOnException")
@@ -82,10 +88,12 @@ public class MovieService {
 	}
 	
 	@Retry(name = "custom")
+	//@CircuitBreaker(name="greetingClientCB", fallbackMethod = "serviceFallbackMethod")
 	public Movie getMovieDetailsUsingCustomRetry(String movieId) {
 		return fetchMovieDetails(movieId);
 	}
 
+	
 	
 	private Movie fetchMovieDetails(String movieId) {
 		Movie movie = null;

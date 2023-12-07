@@ -32,7 +32,7 @@ public class MovieController {
 		switch(retryType) {
 		case "simpleRetry":
 			log.info("Simple retry example");
-			movie = movieService.getMovieDetailsWithFallback(id); //getMovieDetails(id);
+			movie = movieService.getMovieDetails(id);;//getMovieDetailsWithFallback(id); //
 			return ResponseEntity.ok(movie);
 		case "retryOnException":
 			log.info("Retry on exception example");

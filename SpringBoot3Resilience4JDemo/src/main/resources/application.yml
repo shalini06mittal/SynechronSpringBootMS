@@ -5,11 +5,17 @@ management:
       exposure:
         include:
         - "*"
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
 
 resilience4j.retry:
     instances:
       simpleRetry:
-        maxAttempts: 3
+        maxAttempts: 2
         waitDuration: 2s
       retryOnException:
         maxAttempts: 3
@@ -39,7 +45,24 @@ resilience4j.retry:
       retryWithEventDetails:
         maxAttempts: 3
         waitDuration: 5s
-        
+      
+resilience4j.circuitbreaker:
+  
+  circuit-breaker-aspect-order: 1
+  instances:
+    greetingClientCB:
+      registerHealthIndicator: true
+      slidingWindowSize: 6
+      slidingWindowType: COUNT_BASED
+      permittedNumberOfCallsInHalfOpenState: 3
+      minimumNumberOfCalls: 4
+      waitDurationInOpenState: 10s
+      automatic-transition-from-open-to-half-open-enabled: true
+#      slowCallRateThreshold: 100
+#      slowCallDurationThreshold: 2000
+      failureRateThreshold: 50
+#      ignoreExceptions:
+#        - com.jsession4d.feignclient.BusinessException  
         
 
 

@@ -25,10 +25,11 @@ public class RetryCustomConfiguration {
 	{
 		System.out.println("custom config");
 		RetryConfig custom = RetryConfig.custom()
-				.maxAttempts(2)
-				.waitDuration(Duration.ofSeconds(2))
-				.retryExceptions(HttpClientErrorException.class)
-				.ignoreExceptions(MovieNotFoundException.class)
+				.maxAttempts(4)
+				.waitDuration(Duration.ofSeconds(1))
+				
+//				.retryExceptions(HttpClientErrorException.class)
+//				.ignoreExceptions(MovieNotFoundException.class)
 				.build();
 		
 		return registry.retry("custom", custom);
