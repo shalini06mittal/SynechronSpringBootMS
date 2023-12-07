@@ -4,4 +4,12 @@ resilience4j.retry:
       simpleRetry:
         maxAttempts: 3
         waitDuration: 2s
-      
+      retryOnException:
+        maxAttempts: 3
+        waitDuration: 5s
+        retryExceptions:
+          - org.springframework.web.client.HttpClientErrorException
+        ignoreExceptions:
+          - com.ms.exception.MovieNotFoundException
+        
+        

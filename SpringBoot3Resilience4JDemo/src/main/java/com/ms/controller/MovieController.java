@@ -27,10 +27,15 @@ public class MovieController {
 	public ResponseEntity<?> getMovieById(@PathVariable String id, 
 			@RequestParam(required = false, defaultValue = "simpleRetry") String retryType)
 	{
+		Movie movie = null;
 		switch(retryType) {
 		case "simpleRetry":
 			logger.info("Simple retry example");
-			Movie movie = movieService.getMovieDetails(id);
+			movie = movieService.getMovieDetails(id);
+			return ResponseEntity.ok(movie);
+		case "retryOnException":
+			logger.info("Retry on exception example");
+			movie = movieService.getMovieDetailsOnRetryForException(id);
 			return ResponseEntity.ok(movie);
 		}
 		return ResponseEntity.ok("Error");
