@@ -9,6 +9,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.concurrent.TimeUnit;
 
+
+//http://localhost:8080/actuator/hystrix.stream
+
 @SpringBootApplication
 @EnableHystrixDashboard
 @EnableCircuitBreaker
@@ -18,13 +21,15 @@ public class HystrixCircuitBreakerDemoApplication {
 		ConfigurableApplicationContext ctx = SpringApplication.run(HystrixCircuitBreakerDemoApplication.class, args);
 		MyService myService = ctx.getBean(MyService.class);
 
+		TimeUnit.SECONDS.sleep(10);
+		
 		System.out.println("-- calling doSomething(1) 40 times --");
 		int n = 40;
 		for (int i = 0; i < n; i++) {
 			System.out.println("******* "+i +" **************");
 			myService.doSomething(i < (n * 0.6) ? 0 : 2);
 			TimeUnit.MILLISECONDS.sleep(100);
-			if(i==30) TimeUnit.SECONDS.sleep(6);
+			//if(i==30) TimeUnit.SECONDS.sleep(6);
 		}
 		TimeUnit.SECONDS.sleep(6);
 
