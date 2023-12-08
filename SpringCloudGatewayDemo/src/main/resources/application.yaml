@@ -1,0 +1,65 @@
+
+#spring.application.name=api-gateway
+#logging.level.root=INFO
+#logging.level.org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator=INFO
+#logging.level.org.springframework.cloud.gateway= TRACE
+#
+#spring.cloud.gateway.routes[0].id=after_route
+#spring.cloud.gateway.routes[0].uri=lb://BOOK
+#spring.cloud.gateway.routes[0].predicates[0]=Path=/books/**
+
+
+logging:
+ level:
+  root: INFO
+  org:
+   springframework:
+    cloud:
+     gateway: TRACE
+     route:
+       RouteDefinitionRouteLocator: INFO
+     
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: BOOK
+        uri: lb://BOOK-SERVICE
+        predicates:
+        - Path=/books/**
+        filters:
+        - MyPreFilter
+      - id: BOOK-ORDER-SERVICE
+        uri: lb://BOOK-ORDER-SERVICE
+        predicates:
+        - Path=/orders/**
+        filters:
+        - AddRequestHeader=first-request, first-request-header
+        - AddResponseHeader=first-response, first-response-header
+  application:
+    name: api-gateway
+#  security:
+#   oauth2:
+#    resourceserver:
+#     jwt.issuer-uri: http://localhost:8181/realms/spring-boot-ms-realm
+
+#spring:
+# cloud:
+#  gateway:
+#   routes[0]:
+#    id: after_route
+#    uri: lb://BOOK
+#    predicates[0]:
+#     -Path=/books/**
+# application:
+#  name: api-gateway
+     
+
+
+#
+#spring.cloud.gateway.routes[1].id=after_route
+#spring.cloud.gateway.routes[1].uri=lb://BOOK
+#spring.cloud.gateway.routes[1].predicates[0]=Cookie=mycookie,mycookievalue
+        
+#spring.cloud.gateway.routes[0].filters[0]=SetPath=/books/**
